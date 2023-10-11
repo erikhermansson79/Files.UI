@@ -7,7 +7,3 @@ export {
     filesReducer,
     fileActionWatcherSaga
 }
-
-export function test() {
-    console.log("test");
-}
