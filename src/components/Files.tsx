@@ -45,7 +45,7 @@ export default function Files({ isAdmin, disablePagingInFiles, customMenuItems =
         isInModal
     };
 
-    const pageSize = disablePagingInFiles ? "" : "20";
+    const pageSize = disablePagingInFiles ? "0" : "20";
 
     function reload() {
         getDirectoryInfo(path, page, pageSize, dispatch, undefined);
