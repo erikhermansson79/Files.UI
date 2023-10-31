@@ -17,7 +17,7 @@ import { CheckBox } from './CheckBox';
 
 import { useKeyEvent } from '../useKeyEvent';
 
-export default function Files({ isAdmin, disablePagingInFiles }) {
+export default function Files({ isAdmin, disablePagingInFiles, customMenuItems = null }) {
     const navigate = useNavigate();
     const params = useParams();
     const location = useLocation();
@@ -215,7 +215,7 @@ export default function Files({ isAdmin, disablePagingInFiles }) {
     return (
         <UserContext.Provider value={{ isAdmin: isAdmin, disablePagingInFiles: disablePagingInFiles }}>
             <div className="files">
-                <FileCommands path={path} reload={reload} selectedItems={selectedItems} retainNames={retainNames} {...modalProps} />
+                <FileCommands path={path} reload={reload} selectedItems={selectedItems} retainNames={retainNames} customMenuItems={customMenuItems} {...modalProps} />
 
                 <FileList strategy={strategy} data={data} {...modalProps} />
 

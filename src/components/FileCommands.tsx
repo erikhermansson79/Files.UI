@@ -18,7 +18,7 @@ import { UserContext } from '../UserContext';
 
 import { useKeyEvent } from '../useKeyEvent';
 
-export function FileCommands({ path, reload, selectedItems, retainNames, ...rest }) {
+export function FileCommands({ path, reload, selectedItems, retainNames, customMenuItems, ...rest }) {
     const dispatch = useDispatch();
     const filesRef = useRef<HTMLInputElement>();
     const folderRef = useRef<HTMLInputElement>();
@@ -247,15 +247,17 @@ export function FileCommands({ path, reload, selectedItems, retainNames, ...rest
                                             </Nav.Link>
                                         </>
                                     }
-                                <Nav.Item className="ms-auto rounded-4 border border-dark py-2 px-3">{selectedItems.length} markeras</Nav.Item>
+                                    <Nav.Item className="ms-auto rounded-4 border border-dark py-2 px-3">{selectedItems.length} markeras</Nav.Item>
                                 </>
                             }
-                            <Nav.Item className={classnames("py-2 px-3 flex-shrink-1 link", {
-                                "ms-0": selectedItems.length > 0,
-                                "ms-auto": selectedItems.length === 0,
-                            })}>
-                                {/*<Settings />*/}
-                            </Nav.Item>
+                            {customMenuItems &&
+                                <Nav.Item className={classnames("py-2 px-3 flex-shrink-1 link", {
+                                    "ms-0": selectedItems.length > 0,
+                                    "ms-auto": selectedItems.length === 0,
+                                })}>
+                                    {customMenuItems}
+                                </Nav.Item>
+                            }
                         </Nav>
                     </Navbar.Collapse>
                 </Container>
