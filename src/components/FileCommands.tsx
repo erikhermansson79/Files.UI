@@ -117,8 +117,8 @@ export function FileCommands({ path, reload, selectedItems, retainNames, customM
     function moveItems(destination) {
         setShowMoveModal(false);
 
-        setTimeout(async () => {
-            const really = await confirm(`Vill du verkligen flytta ${selectedItems.length} objekt till /${destination}?`, "Ja", "Nej", "Bekräfta flytt");
+        setTimeout(() => {
+            const really = window.confirm(`Vill du verkligen flytta ${selectedItems.length} objekt till /${destination}?`);
             if (really) {
                 for (const item of selectedItems) {
                     const targetPath = path.endsWith('/')
@@ -135,8 +135,8 @@ export function FileCommands({ path, reload, selectedItems, retainNames, customM
     function copyItems(destination) {
         setShowCopyModal(false);
 
-        setTimeout(async () => {
-            const really = await confirm(`Vill du verkligen kopiera ${selectedItems.length} objekt till /${destination}?`, "Ja", "Nej", "Bekräfta kopiering");
+        setTimeout(() => {
+            const really = window.confirm(`Vill du verkligen kopiera ${selectedItems.length} objekt till /${destination}?`);
             if (really) {
                 for (const item of selectedItems) {
                     const targetPath = path.endsWith('/')
@@ -166,8 +166,8 @@ export function FileCommands({ path, reload, selectedItems, retainNames, customM
         await postDownloadAsync(selectedItems.map(si => si.path));
     }
 
-    async function deleteItems() {
-        const really = await confirm(`Vill du verkligen ta bort ${selectedItems.length} objekt?`, "Ja", "Nej", "Bekräfta borttagning");
+    function deleteItems() {
+        const really = window.confirm(`Vill du verkligen ta bort ${selectedItems.length} objekt?`);
         if (really) {
             for (const item of selectedItems) {
                 const destination = path.endsWith('/')
