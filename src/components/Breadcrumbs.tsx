@@ -1,9 +1,13 @@
-﻿export function Breadcrumbs({ strategy, breadcrumbs, ...restProps }) {
+﻿import { useTranslation } from "react-i18next";
+
+export function Breadcrumbs({ strategy, breadcrumbs, ...restProps }) {
+    const { t } = useTranslation();
+
     const [first, ...rest] = breadcrumbs;
 
     var path = breadcrumbs.length === 1 ? undefined : "";
 
-    const crumbs = [{ name: first, path: path }];
+    const crumbs = [{ name: t(first), path: path }];
 
     var count = 1;
     for (const bc of rest) {

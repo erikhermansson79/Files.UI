@@ -11,6 +11,7 @@ const i18n = createInstance({
   resources: {
     en: {
       translation: {
+        "files": "Files",
         "previous": "Previous",
         "next": "Next",
         "ago": "ago",
@@ -19,6 +20,7 @@ const i18n = createInstance({
     },
     sv: {
       translation: {
+        "files": "Filer",
         "previous": "Föregående",
         "next": "Nästa",
         "ago": "sedan",
