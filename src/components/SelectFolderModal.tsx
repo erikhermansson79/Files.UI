@@ -20,7 +20,7 @@ export function SelectFolderModal({ onClose, onSelectFolder, initialPath, select
     const [data, dispatch] = useImmerReducer(filesReducer, { selectedItems: [] });
 
     const { disablePagingInFiles } = useContext(UserContext) || {};
-    const pageSize = disablePagingInFiles ? "" : "20";
+    const pageSize = disablePagingInFiles ? "0" : "20";
 
     const reload = useCallback(() => {
         getDirectoryInfo(path, page, pageSize, dispatch, undefined);

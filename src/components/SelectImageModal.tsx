@@ -25,7 +25,7 @@ export function SelectImageModal({ onClose, onSelectImage, initialPath }) {
     const [selectedImageData, setSelectedImageData] = useState<any>();
 
     const { disablePagingInFiles } = useContext(UserContext) || {};
-    const pageSize = disablePagingInFiles ? "" : "20";
+    const pageSize = disablePagingInFiles ? "0" : "20";
 
     const reload = useCallback(() => {
         getDirectoryInfo(path, page, pageSize, dispatch, undefined);
