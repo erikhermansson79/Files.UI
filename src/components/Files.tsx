@@ -2,6 +2,8 @@ import { useEffect, useState } from 'react';
 import { useParams, useSearchParams, useLocation, useNavigate, Link } from 'react-router-dom';
 import { useImmerReducer } from 'use-immer';
 import classnames from 'classnames';
+import { I18nextProvider } from 'react-i18next';
+import i18n from '../i18n';
 
 import { UserContext } from '../UserContext';
 
@@ -213,16 +215,18 @@ export default function Files({ isAdmin, disablePagingInFiles, customMenuItems =
     }, this);
 
     return (
-        <UserContext.Provider value={{ isAdmin: isAdmin, disablePagingInFiles: disablePagingInFiles }}>
-            <div className="files">
-                <FileCommands path={path} reload={reload} selectedItems={selectedItems} retainNames={retainNames} customMenuItems={customMenuItems} {...modalProps} />
+        <I18nextProvider i18n={i18n}>
+            <UserContext.Provider value={{ isAdmin: isAdmin, disablePagingInFiles: disablePagingInFiles }}>
+                <div className="files">
+                    <FileCommands path={path} reload={reload} selectedItems={selectedItems} retainNames={retainNames} customMenuItems={customMenuItems} {...modalProps} />
 
-                <FileList strategy={strategy} data={data} {...modalProps} />
+                    <FileList strategy={strategy} data={data} {...modalProps} />
 
-                {data.filePath &&
-                    <FileDisplay filePath={data.filePath} rootRoute={rootRoute} />
-                }
-            </div>
-        </UserContext.Provider>
+                    {data.filePath &&
+                        <FileDisplay filePath={data.filePath} rootRoute={rootRoute} />
+                    }
+                </div>
+            </UserContext.Provider>
+        </I18nextProvider>
     );
 }

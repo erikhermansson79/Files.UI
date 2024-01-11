@@ -4,6 +4,7 @@ import { SelectImageModal } from './components/SelectImageModal';
 import { SelectFolderModal } from './components/SelectFolderModal';
 import filesReducer from './services/fileActions';
 import { fileActionWatcherSaga } from './sagas/fileActionsSaga';
+import i18n from './i18n';
 
 export {
     Files,
@@ -11,5 +12,6 @@ export {
     SelectImageModal,
     SelectFolderModal,
     filesReducer,
-    fileActionWatcherSaga
+    fileActionWatcherSaga,
+    i18n
 }
