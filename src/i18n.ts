@@ -19,10 +19,10 @@ const i18n = createInstance({
     },
     sv: {
       translation: {
-        "previous": "Föregående",
-        "next": "Nästa",
+        "previous": "FÃ¶regÃ¥ende",
+        "next": "NÃ¤sta",
         "ago": "sedan",
-        "close": "Stäng"
+        "close": "StÃ¤ng"
       },
     },
   },
