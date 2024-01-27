@@ -1,12 +1,12 @@
 export async function getFolderContentAsync(path, page, pageSize) {
-    return await fetch(`api/files/${path}?page=${page}&pageSize=${pageSize}`, {
+    return await fetch(`/api/files/${path}?page=${page}&pageSize=${pageSize}`, {
         credentials: "include"
     });
 }
 
 export async function postDownloadAsync(paths) {
     var myform = document.createElement("form");
-    myform.action = `api/files/download`;
+    myform.action = `/api/files/download`;
     myform.method = "POST";
 
     myform.addEventListener("submit", (e) => {
@@ -25,7 +25,7 @@ export async function postDownloadAsync(paths) {
 }
 
 export async function postCreateFolderAsync(location, name) {
-    return await fetch(`api/files/CreateFolder`, {
+    return await fetch(`/api/files/CreateFolder`, {
         method: "POST",
         credentials: "include",
         headers: {
@@ -39,7 +39,7 @@ export async function postCreateFolderAsync(location, name) {
 }
 
 export async function postChangeItemNameAsync(target, name, type) {
-    return await fetch(`api/files/ChangeItemName`, {
+    return await fetch(`/api/files/ChangeItemName`, {
         method: "POST",
         credentials: "include",
         headers: {
@@ -54,7 +54,7 @@ export async function postChangeItemNameAsync(target, name, type) {
 }
 
 export async function postToggleItemHiddenAsync(target, type) {
-    return await fetch(`api/files/ToggleItemHidden`, {
+    return await fetch(`/api/files/ToggleItemHidden`, {
         method: "POST",
         credentials: "include",
         headers: {
@@ -68,7 +68,7 @@ export async function postToggleItemHiddenAsync(target, type) {
 }
 
 export async function postDeleteItemAsync(target, type) {
-    return await fetch(`api/files/DeleteItem`, {
+    return await fetch(`/api/files/DeleteItem`, {
         method: "POST",
         credentials: "include",
         headers: {
@@ -82,7 +82,7 @@ export async function postDeleteItemAsync(target, type) {
 }
 
 export async function postMoveItemAsync(target, destination, type) {
-    return await fetch(`api/files/MoveItem`, {
+    return await fetch(`/api/files/MoveItem`, {
         method: "POST",
         credentials: "include",
         headers: {
@@ -97,7 +97,7 @@ export async function postMoveItemAsync(target, destination, type) {
 }
 
 export async function postCopyItemAsync(target, destination, type) {
-    return await fetch(`api/files/CopyItem`, {
+    return await fetch(`/api/files/CopyItem`, {
         method: "POST",
         credentials: "include",
         headers: {
@@ -112,7 +112,7 @@ export async function postCopyItemAsync(target, destination, type) {
 }
 
 export async function uploadFileAsync(data) {
-    return await fetch(`api/files/UploadFileChunk`, {
+    return await fetch(`/api/files/UploadFileChunk`, {
         method: "POST",
         credentials: "include",
         headers: {
