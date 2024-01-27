@@ -1,4 +1,6 @@
 export async function getFolderContentAsync(path, page, pageSize) {
+    console.log(window.location.origin);
+
     return await fetch(`${window.location.origin}/api/files/${path}?page=${page}&pageSize=${pageSize}`, {
         credentials: "include"
     });
