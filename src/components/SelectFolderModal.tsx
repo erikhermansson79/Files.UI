@@ -40,6 +40,8 @@ export function SelectFolderModal({ onClose, onSelectFolder, initialPath, select
         HeaderRowComponent: function ({ children }) {
             return (
                 <tr>
+                    {/* @ts-expect-error */}
+                    <th scope="col" width="0px"></th>
                     {children}
                 </tr>
             );
@@ -47,6 +49,7 @@ export function SelectFolderModal({ onClose, onSelectFolder, initialPath, select
         ItemRowComponent: function ({ itemScope, children }) {
             return (
                 <tr className={classnames("p-2 border-top", { "disabled": itemScope.disabled, "hidden-item": itemScope.item.isHidden })}>
+                    <td width="10px"></td>
                     {children}
                 </tr>
             );
