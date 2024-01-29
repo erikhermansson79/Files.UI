@@ -1,6 +1,4 @@
-﻿
-
-import { filesize } from "filesize";
+﻿import { filesize } from "filesize";
 import Button from 'react-bootstrap/Button';
 import { LoadingIndicator } from './LoadingIndicator';
 
@@ -9,6 +7,8 @@ import { useDateFormat } from '../useDateFormat';
 import { Pagination } from './Pagination';
 import { Breadcrumbs } from './Breadcrumbs';
 
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faFile } from '@fortawesome/free-regular-svg-icons'
 
 export function FileList({ strategy, data, ...rest }) {
     const formatDate = useDateFormat();
@@ -32,7 +32,7 @@ export function FileList({ strategy, data, ...rest }) {
                         <thead className="p-2">
                             <HeaderRow>
                                 {/* @ts-expect-error */}
-                                <th scope="col" width="40px"><i className="fa-regular fa-file fs-6"></i></th>
+                                <th scope="col" width="40px"><FontAwesomeIcon icon={faFile} className="fs-6"></FontAwesomeIcon></th>
                                 {/* @ts-expect-error */}
                                 <th scope="col" width="300px">Namn</th>
                                 {/* @ts-expect-error */}

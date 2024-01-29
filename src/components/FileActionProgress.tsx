@@ -3,6 +3,9 @@ import { reset } from '../services/fileActions';
 import Button from 'react-bootstrap/Button';
 import OverlayTrigger from 'react-bootstrap/OverlayTrigger';
 import Popover from 'react-bootstrap/Popover';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faCircleCheck, faUpload, faTrash, faFileExport, faCopy, faSpinner } from '@fortawesome/free-solid-svg-icons'
+import { faClock} from '@fortawesome/free-regular-svg-icons'
 
 import {
     UPLOAD_FILE_ACTION, DELETE_ITEM_ACTION, MOVE_ITEM_ACTION, COPY_ITEM_ACTION
@@ -10,10 +13,10 @@ import {
 
 function ActionIcon({ action }) {
     switch (action) {
-        case UPLOAD_FILE_ACTION: return <i className="fa-solid fa-fw fa-upload"></i>;
-        case DELETE_ITEM_ACTION: return <i className="fa-solid fa-fw fa-trash"></i>;
-        case MOVE_ITEM_ACTION: return <i className="fa-solid fa-fw fa-file-export"></i>;
-        case COPY_ITEM_ACTION: return <i className="fa-solid fa-fw fa-copy"></i>;
+        case UPLOAD_FILE_ACTION: return <FontAwesomeIcon icon={faUpload} fixedWidth={true}></FontAwesomeIcon>;
+        case DELETE_ITEM_ACTION: return <FontAwesomeIcon icon={faTrash} fixedWidth={true}></FontAwesomeIcon>;
+        case MOVE_ITEM_ACTION: return <FontAwesomeIcon icon={faFileExport} fixedWidth={true}></FontAwesomeIcon>;
+        case COPY_ITEM_ACTION: return <FontAwesomeIcon icon={faCopy} fixedWidth={true}></FontAwesomeIcon>;
         default: return null;
     }
 }
@@ -50,13 +53,13 @@ export function FileActionProgress() {
                                         <tr key={key}>
                                             <td width="40px" className="align-top">
                                                 {fileAction.progress === 0 &&
-                                                    <i className="fa-regular fa-clock"></i>
+                                                    <FontAwesomeIcon icon={faClock}></FontAwesomeIcon>
                                                 }
                                                 {fileAction.progress > 0 && fileAction.progress < 1 &&
                                                     <progress className="w-100" value={fileAction.progress} />
                                                 }
                                                 {fileAction.progress >= 1 &&
-                                                    <i className="fa-solid fa-circle-check text-success"></i>
+                                                    <FontAwesomeIcon icon={faCircleCheck} className="text-success"></FontAwesomeIcon>
                                                 }
                                             </td>
                                             <td width="40px" className="align-top"><ActionIcon action={fileAction.action} /></td>
@@ -72,12 +75,12 @@ export function FileActionProgress() {
                 </Popover>
             }
         >
-            <button className="border border-light rounded my-1 py-1 px-sm-3 bg-light box-shadow">
+            <button className="border rounded my-1 py-1 px-sm-3 box-shadow">
                 {finishedFileActions.length < allFileActions.length &&
-                    <i className="fa-solid fa-spinner fa-spin-pulse"></i>
+                    <FontAwesomeIcon icon={faSpinner} spinPulse={true}></FontAwesomeIcon>
                 }
                 {finishedFileActions.length === allFileActions.length &&
-                    <i className="fa-solid fa-check-circle"></i>
+                    <FontAwesomeIcon icon={faCircleCheck}></FontAwesomeIcon>
                 }
                 <span className="ms-2 d-none d-sm-inline-block">({finishedFileActions.length}/{allFileActions.length})</span>
             </button>
