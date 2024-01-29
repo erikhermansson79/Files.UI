@@ -1,4 +1,6 @@
 ﻿import { useTranslation } from "react-i18next";
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faChevronRight } from '@fortawesome/free-solid-svg-icons'
 
 export function Breadcrumbs({ strategy, breadcrumbs, ...restProps }) {
     const { t } = useTranslation();
@@ -23,7 +25,7 @@ export function Breadcrumbs({ strategy, breadcrumbs, ...restProps }) {
                     {bc.path !== undefined &&
                         <>
                         <span className="link text-muted m-0 p-0 border-0 fs-4" onClick={e => { e.stopPropagation(); strategy.gotoPath(bc.path); }}>{bc.name}</span>
-                            <i className="mx-2 fa-solid fa-chevron-right fs-6 text-muted"></i>
+                        <FontAwesomeIcon icon={faChevronRight} className="mx-2 fs-6 text-muted" />
                         </>
                     }
                     {bc.path === undefined && <span className="">{bc.name}</span>}
