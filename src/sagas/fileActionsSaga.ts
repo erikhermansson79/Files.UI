@@ -62,7 +62,7 @@ function* fileUploadSaga(payload) {
         end = start + chunkSize;
         chunkNumber++;
 
-        yield put({ type: updateActionProgress, payload: { meta, action, progress } });
+        yield put({ type: updateActionProgress.type, payload: { meta, action, progress } });
     } while (start < file.size);
 
     meta.reload();
@@ -73,7 +73,7 @@ function* deleteItemSaga(payload) {
 
     yield postDeleteItemAsync(meta.target, item.type);
 
-    yield put({ type: updateActionProgress, payload: { meta, action, progress: 1 } });
+    yield put({ type: updateActionProgress.type, payload: { meta, action, progress: 1 } });
 
     meta.reload();
 }
@@ -83,7 +83,7 @@ function* moveItemSaga(payload) {
 
     yield postMoveItemAsync(meta.target, meta.destination, item.type);
 
-    yield put({ type: updateActionProgress, payload: { meta, action, progress: 1 } });
+    yield put({ type: updateActionProgress.type, payload: { meta, action, progress: 1 } });
 
     meta.reload();
 }
@@ -93,7 +93,7 @@ function* copyItemSaga(payload) {
 
     yield postCopyItemAsync(meta.target, meta.destination, item.type);
 
-    yield put({ type: updateActionProgress, payload: { meta, action, progress: 1 } });
+    yield put({ type: updateActionProgress.type, payload: { meta, action, progress: 1 } });
 
     meta.reload();
 }
@@ -134,7 +134,7 @@ export function* fileActionWatcherSaga() {
 
     while (true) {
         const { payload } = yield take(startAction);
-        yield put({ type: storeAction, payload });
+        yield put({ type: storeAction.type, payload });
         yield put(chan, payload);
     }
 }
