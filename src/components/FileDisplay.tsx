@@ -32,7 +32,7 @@ export function FileDisplay({ filePath, rootRoute }) {
         if (filePath && !isViewerSupportedForType && !isIframeSupportedForType) {
             const conditionalPath = folderPath.startsWith('/') ? folderPath : `/${folderPath}`;
             navigate(`${rootRoute}${conditionalPath}`);
-            window.location.href = `api/Files/${filePath}?download`;
+            window.location.href = `/api/files/${filePath}?download`;
         }
     }, [filePath, isViewerSupportedForType, isIframeSupportedForType]);
 
@@ -52,10 +52,10 @@ export function FileDisplay({ filePath, rootRoute }) {
                     </Modal.Header>
                     <Modal.Body className="d-flex">
                         {isViewerSupportedForType &&
-                            <DocViewer documents={[{ uri: `api/Files/${filePath}` }]} pluginRenderers={DocViewerRenderers} />
+                            <DocViewer documents={[{ uri: `/api/files/${filePath}` }]} pluginRenderers={DocViewerRenderers} />
                         }
                         {isIframeSupportedForType &&
-                            <iframe title={fileName} src={`api/Files/${filePath}#toolbar=1&view=Fit`} className={`w-100 h-100 bg-white`}></iframe>
+                            <iframe title={fileName} src={`/api/files/${filePath}#toolbar=1&view=Fit`} className={`w-100 h-100 bg-white`}></iframe>
                         }
                         {/*{extension === ".mid" &&*/}
                         {/*    <MidiPlayer url={`${window.apiBaseUrl}/Files/${filePath}`} />*/}
