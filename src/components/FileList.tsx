@@ -28,7 +28,7 @@ export function FileList({ strategy, data, ...rest }) {
 
             {data && data.items &&
                 <div className="m-3 bg-body rounded box-shadow table-responsive" style={{ minHeight: "400px" }}>
-                    <table className="table table-sm table-hover table-borderless m-0 border-bottom" style={{ minWidth: "750px" }}>
+                    <table className="table table-sm table-hover table-borderless m-0 border-bottom" style={{ minWidth: "600px" }}>
                         <thead className="p-2">
                             <HeaderRow>
                                 {/* @ts-expect-error */}
@@ -38,6 +38,7 @@ export function FileList({ strategy, data, ...rest }) {
                                 <th scope="col" width="200px">Ändrades</th>
                                 {/* @ts-expect-error */}
                                 <th scope="col" width="100px">Storlek</th>
+                                <th></th>
                             </HeaderRow>
                         </thead>
 
@@ -69,6 +70,7 @@ export function FileList({ strategy, data, ...rest }) {
                                                 <>{filesize(item.size, { round: 0 })}</>
                                             }
                                         </td>
+                                        <th></th>
                                     </ItemRow>
                                 );
                             })}
