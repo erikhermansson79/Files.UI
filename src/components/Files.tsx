@@ -4,6 +4,7 @@ import { useImmerReducer } from 'use-immer';
 import classnames from 'classnames';
 import { I18nextProvider } from 'react-i18next';
 import i18n from '../i18n';
+import { LocaleContext } from '../LocaleContext';
 
 import { UserContext } from '../UserContext';
 
@@ -20,6 +21,10 @@ import { CheckBox } from './CheckBox';
 import { useKeyEvent } from '../useKeyEvent';
 
 export default function Files({ isAdmin, disablePagingInFiles, customMenuItems = null }) {
+    const [locale, setLocale] = useState(i18n.language);
+
+    i18n.on('languageChanged', (lng) => setLocale(lng));
+
     const navigate = useNavigate();
     const params = useParams();
     const location = useLocation();
@@ -216,17 +221,19 @@ export default function Files({ isAdmin, disablePagingInFiles, customMenuItems =
 
     return (
         <I18nextProvider i18n={i18n}>
-            <UserContext.Provider value={{ isAdmin: isAdmin, disablePagingInFiles: disablePagingInFiles }}>
-                <div className="files">
-                    <FileCommands path={path} reload={reload} selectedItems={selectedItems} retainNames={retainNames} customMenuItems={customMenuItems} {...modalProps} />
+            <LocaleContext.Provider value={{ locale, setLocale }}>
+                <UserContext.Provider value={{ isAdmin: isAdmin, disablePagingInFiles: disablePagingInFiles }}>
+                    <div className="files">
+                        <FileCommands path={path} reload={reload} selectedItems={selectedItems} retainNames={retainNames} customMenuItems={customMenuItems} {...modalProps} />
 
-                    <FileList strategy={strategy} data={data} {...modalProps} />
+                        <FileList strategy={strategy} data={data} {...modalProps} />
 
-                    {data.filePath &&
-                        <FileDisplay filePath={data.filePath} rootRoute={rootRoute} />
-                    }
-                </div>
-            </UserContext.Provider>
+                        {data.filePath &&
+                            <FileDisplay filePath={data.filePath} rootRoute={rootRoute} />
+                        }
+                    </div>
+                </UserContext.Provider>
+            </LocaleContext.Provider>
         </I18nextProvider>
     );
 }
