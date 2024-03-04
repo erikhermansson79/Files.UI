@@ -37,7 +37,7 @@ export function FileList({ strategy, data, ...rest }) {
                                 {/* @ts-expect-error */}
                                 <th scope="col" width="200px">Ändrades</th>
                                 {/* @ts-expect-error */}
-                                <th scope="col" width="150px">Storlek</th>
+                                <th scope="col" width="100px">Storlek</th>
                             </HeaderRow>
                         </thead>
 
@@ -55,7 +55,7 @@ export function FileList({ strategy, data, ...rest }) {
                                                 <span className={`fiv-sqo fiv-icon-${item.extension.slice(1)}`}></span>
                                             }
                                         </td>
-                                        <td className="nameColumn text-truncate d-inline-block">
+                                        <td className="nameColumn text-truncate">
                                             {!itemScope.disabled &&
                                                 <Button variant="link" className="fileListLink m-0 p-0 border-0" onClick={e => { e.stopPropagation(); strategy.onItemClick(item); }}>{item.name}</Button>
                                             }
@@ -64,7 +64,7 @@ export function FileList({ strategy, data, ...rest }) {
                                             }
                                         </td>
                                         <td width="200px">{formatDate(item.lastChanged)}</td>
-                                        <td width="150px">
+                                        <td width="100px">
                                             {item.type === "file" &&
                                                 <>{filesize(item.size, { round: 0 })}</>
                                             }
