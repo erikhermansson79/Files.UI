@@ -8,11 +8,12 @@ import NavDropdown from 'react-bootstrap/NavDropdown';
 import Dropdown from 'react-bootstrap/Dropdown';
 import DropdownButton from 'react-bootstrap/DropdownButton';
 import { CreateFolderModal } from './CreateFolderModal';
+import { CreateURLModal } from './CreateURLModal';
 import { SelectFolderModal } from './SelectFolderModal';
 import { ChangeItemNameModal } from './ChangeItemNameModal';
 //import { Settings } from './Settings';
 import { startAction, UPLOAD_FILE_ACTION, DELETE_ITEM_ACTION, MOVE_ITEM_ACTION, COPY_ITEM_ACTION } from '../services/fileActions';
-import { postDownloadAsync, postCreateFolderAsync, postChangeItemNameAsync, postToggleItemHiddenAsync } from '../services/files';
+import { postDownloadAsync, postCreateFolderAsync, postCreateURLAsync, postChangeItemNameAsync, postToggleItemHiddenAsync } from '../services/files';
 import { confirm } from './ConfirmDialog';
 import { UserContext } from '../UserContext';
 
@@ -29,11 +30,12 @@ export function FileCommands({ path, reload, selectedItems, retainNames, customM
         showMoveModal, setShowMoveModal,
         showCopyModal, setShowCopyModal,
         showCreateFolderModal, setShowCreateFolderModal,
+        showCreateURLModal, setShowCreateURLModal,
         showChangeItemNameModal, setShowChangeItemNameModal
     } = rest;
 
     useKeyEvent((event) => {
-        if (!showCreateFolderModal && !showMoveModal && !showCopyModal && !showChangeItemNameModal) {
+        if (!showCreateFolderModal && !showCreateURLModal && !showMoveModal && !showCopyModal && !showChangeItemNameModal) {
             if (event.shiftKey === true && event.key.toLowerCase() === 'm') {
                 event.preventDefault();
                 event.stopPropagation();
@@ -83,6 +85,19 @@ export function FileCommands({ path, reload, selectedItems, retainNames, customM
         createFolder(folderName);
 
         setShowCreateFolderModal(false)
+    }
+
+    function onCreateURL(displayName, url) {
+        async function createURL(name, link) {
+            const response = await postCreateURLAsync(name, link);
+            if (response.ok) {
+                reload();
+            }
+        }
+
+        createURL(displayName, url);
+
+        setShowCreateURLModal(false)
     }
 
     function onChangeItemName(item, name) {
@@ -186,6 +201,10 @@ export function FileCommands({ path, reload, selectedItems, retainNames, customM
                 <CreateFolderModal onClose={() => setShowCreateFolderModal(false)} onCreateFolder={onCreateFolder} />
             }
 
+            {showCreateURLModal &&
+                <CreateURLModal onClose={() => setShowCreateURLModal(false)} onCreateURL={onCreateURL} />
+            }
+
             {showMoveModal &&
                 <SelectFolderModal onClose={() => setShowMoveModal(false)} onSelectFolder={moveItems} initialPath={path} selectedItems={selectedItems} title="Flytta" />
             }
@@ -212,6 +231,7 @@ export function FileCommands({ path, reload, selectedItems, retainNames, customM
                                 <>
                                     <DropdownButton title={<><i className="fa-solid fa-fw fa-plus"></i> Ny</>} >
                                         <Dropdown.Item className="d-flex" onClick={() => setShowCreateFolderModal(true)}><span className="me-3"><i className="fa-solid fa-folder fa-fw fs-6"></i> Mapp</span> <span className="fs-6 ms-auto text-muted">(Shift + M)</span></Dropdown.Item>
+                                        <Dropdown.Item className="d-flex" onClick={() => setShowCreateURLModal(true)}><span className="me-3"><i className="fa-solid fa-link fa-fw fs-6"></i> Webblänk</span></Dropdown.Item>
                                     </DropdownButton>
                                     <NavDropdown title={<><i className="fa-solid fa-fw fa-upload"></i> Ladda upp</>}>
                                         <NavDropdown.Item className="d-flex" onClick={() => { filesRef.current.value = ""; filesRef.current.click(); }}><span className="me-3">Filer</span> <span className="fs-6 ms-auto text-muted">(Ctrl + F)</span></NavDropdown.Item>

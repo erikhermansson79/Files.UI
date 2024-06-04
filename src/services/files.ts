@@ -38,6 +38,21 @@ export async function postCreateFolderAsync(location, name) {
     });
 }
 
+export async function postCreateURLAsync(location, name, link) {
+    return await fetch(`${window.location.origin}/api/files/CreateURL`, {
+        method: "POST",
+        credentials: "include",
+        headers: {
+            "Content-Type": "application/json"
+        },
+        body: JSON.stringify({
+            displayName: name,
+            url: link,
+            location
+        })
+    });
+}
+
 export async function postChangeItemNameAsync(target, name, type) {
     return await fetch(`${window.location.origin}/api/files/ChangeItemName`, {
         method: "POST",

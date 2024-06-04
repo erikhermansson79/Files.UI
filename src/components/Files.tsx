@@ -42,12 +42,14 @@ export default function Files({ isAdmin, disablePagingInFiles, customMenuItems =
     const [showMoveModal, setShowMoveModal] = useState(false);
     const [showCopyModal, setShowCopyModal] = useState(false);
     const [showCreateFolderModal, setShowCreateFolderModal] = useState(false);
+    const [showCreateURLModal, setShowCreateURLModal] = useState(false);
     const [showChangeItemNameModal, setShowChangeItemNameModal] = useState(false);
-    const isInModal = showMoveModal || showCopyModal || showCreateFolderModal || showChangeItemNameModal;
+    const isInModal = showMoveModal || showCopyModal || showCreateFolderModal || showCreateURLModal || showChangeItemNameModal;
     const modalProps = {
         showMoveModal, setShowMoveModal,
         showCopyModal, setShowCopyModal,
         showCreateFolderModal, setShowCreateFolderModal,
+        showCreateURLModal, setShowCreateURLModal,
         showChangeItemNameModal, setShowChangeItemNameModal,
         isInModal
     };
