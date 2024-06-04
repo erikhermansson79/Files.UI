@@ -3,7 +3,7 @@ import Button from 'react-bootstrap/Button';
 import Modal from 'react-bootstrap/Modal';
 
 export function ChangeItemNameModal({ item, onClose, onChangeItemName }) {
-    const [name, setName] = useState(item.type === "file" ? item.nameWithoutExtension : item.name);
+    const [name, setName] = useState(item.type === "file" ? item.nameWithoutExtension : item.type === "link" ? item.displayName : item.name);
 
     const callbackRef = useCallback(inputElement => {
         if (inputElement) {
