@@ -55,13 +55,16 @@ export function FileList({ strategy, data, ...rest }) {
                                             {item.type === "file" &&
                                                 <span className={`fiv-sqo fiv-icon-${item.extension.slice(1)}`}></span>
                                             }
+                                            {item.type === "link" &&
+                                                <img src={`data:image/png;base64,${item.iconData}`} />
+                                            }
                                         </td>
                                         <td className="nameColumn text-truncate">
                                             {!itemScope.disabled &&
-                                                <Button variant="link" className="fileListLink m-0 p-0 border-0" onClick={e => { e.stopPropagation(); strategy.onItemClick(item); }}>{item.name}</Button>
+                                                <Button variant="link" className="fileListLink m-0 p-0 border-0" onClick={e => { e.stopPropagation(); strategy.onItemClick(item); }}>{item.type === "link" ? item.displayName : item.name}</Button>
                                             }
                                             {itemScope.disabled &&
-                                                <>{item.name}</>
+                                                <>{item.type === "link" ? item.displayName : item.name}</>
                                             }
                                         </td>
                                         <td width="200px">{formatDate(item.lastChanged)}</td>

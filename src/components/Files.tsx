@@ -125,7 +125,11 @@ export default function Files({ isAdmin, disablePagingInFiles, customMenuItems =
         },
         gotoPath: gotoPath,
         onItemClick: function (item) {
-            gotoPath(item.path);
+            if (item.type === "link" && item.linkType === "URL") {
+                window.open(item.linkTarget, "_blank");
+            } else {
+                gotoPath(item.path);
+            }
         },
         gotoItem: gotoItem,
         gotoPage: function (page) {
