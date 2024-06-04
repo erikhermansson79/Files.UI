@@ -89,7 +89,7 @@ export function FileCommands({ path, reload, selectedItems, retainNames, customM
 
     function onCreateURL(displayName, url) {
         async function createURL(name, link) {
-            const response = await postCreateURLAsync(name, link);
+            const response = await postCreateURLAsync(path, name, link);
             if (response.ok) {
                 reload();
             }
