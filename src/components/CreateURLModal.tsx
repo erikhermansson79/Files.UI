@@ -28,7 +28,7 @@ export function CreateURLModal({ onClose, onCreateURL }) {
                 </Modal.Header>
                 <Modal.Body className="p-5">
                     <input autoFocus ref={callbackRef} value={displayName} onChange={ev => setDisplayName(ev.target.value)} className="form-control" placeholder="Ange visningsnamn" />
-                    <input autoFocus ref={callbackRef} value={url} onChange={ev => setURL(ev.target.value)} className="form-control mt-1" placeholder="Ange länk" />
+                    <input value={url} onChange={ev => setURL(ev.target.value)} className="form-control mt-3" placeholder="Ange länk" />
                 </Modal.Body>
                 <Modal.Footer>
                     <Button disabled={!displayName || !url} type="submit">Skapa</Button>
