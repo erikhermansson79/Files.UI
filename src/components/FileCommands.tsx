@@ -1,4 +1,4 @@
-﻿import { useRef, useContext } from 'react';
+import { useRef, useContext } from 'react';
 import { useDispatch } from 'react-redux';
 import classnames from 'classnames';
 import Container from 'react-bootstrap/Container';
@@ -21,8 +21,8 @@ import { useKeyEvent } from '../useKeyEvent';
 
 export function FileCommands({ path, reload, selectedItems, retainNames, customMenuItems, ...rest }) {
     const dispatch = useDispatch();
-    const filesRef = useRef<HTMLInputElement>();
-    const folderRef = useRef<HTMLInputElement>();
+    const filesRef = useRef<HTMLInputElement>(null);
+    const folderRef = useRef<HTMLInputElement>(null);
 
     const { isAdmin } = useContext(UserContext) || {};
 
