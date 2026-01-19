@@ -230,6 +230,7 @@ export default function Files({ isAdmin, disablePagingInFiles, customMenuItems =
             <LocaleContext.Provider value={{ locale, setLocale }}>
                 <UserContext.Provider value={{ isAdmin: isAdmin, disablePagingInFiles: disablePagingInFiles }}>
                     <div className="files">
+                        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/file-icon-vectors@1.0.0/dist/file-icon-square-o.min.css" />
                         <FileCommands path={path} reload={reload} selectedItems={selectedItems} retainNames={retainNames} customMenuItems={customMenuItems} {...modalProps} />
 
                         <FileList strategy={strategy} data={data} {...modalProps} />
